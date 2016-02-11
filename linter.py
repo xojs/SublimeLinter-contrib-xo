@@ -14,7 +14,6 @@ from SublimeLinter.lint import NodeLinter
 
 
 class XO(NodeLinter):
-
     """Provides an interface to XO."""
 
     cmd = 'xo --stdin --compact'
