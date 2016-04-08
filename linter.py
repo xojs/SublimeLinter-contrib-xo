@@ -12,6 +12,7 @@ from SublimeLinter.lint import NodeLinter
 
 
 class XO(NodeLinter):
+    npm_name = 'xo'
     cmd = ('xo', '--stdin', '--reporter', 'compact', '--filename', '@')
     regex = (
         r'^.+?: line (?P<line>\d+), col (?P<col>\d+), '

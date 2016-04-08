@@ -49,6 +49,11 @@ For general information on how SublimeLinter works with settings, please see [Se
 XO [config](https://github.com/sindresorhus/xo#config) should be defined in package.json.
 
 
+## Note
+
+XO linting is only enabled for projects with `xo` in `devDependencies`/`dependencies` in package.json.
+
+
 ## License
 
 MIT © [Sindre Sorhus](https://sindresorhus.com)
