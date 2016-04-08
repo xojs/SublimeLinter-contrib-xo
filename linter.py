@@ -8,15 +8,11 @@
 # License: MIT
 #
 
-"""This module exports the XO plugin class."""
-
 from SublimeLinter.lint import NodeLinter
 
 
 class XO(NodeLinter):
-    """Provides an interface to XO."""
-
-    cmd = 'xo --stdin --compact'
+    cmd = ('xo', '--stdin', '--reporter', 'compact', '--filename', '@')
     regex = (
         r'^.+?: line (?P<line>\d+), col (?P<col>\d+), '
         r'(?:(?P<error>Error)|(?P<warning>Warning)) - '

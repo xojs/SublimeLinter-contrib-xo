@@ -41,14 +41,17 @@ To install via Package Control, do the following:
 
 1. When the plugin list appears, type `xo`. Among the entries you should see `SublimeLinter-contrib-xo`. If that entry is not highlighted, use the keyboard or mouse to select it.
 
+
 ## Settings
 
 For general information on how SublimeLinter works with settings, please see [Settings][settings]. For information on generic linter settings, please see [Linter Settings][linter-settings].
 
+XO [config](https://github.com/sindresorhus/xo#config) should be defined in package.json.
+
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)
 
 
 [docs]: http://sublimelinter.readthedocs.org
