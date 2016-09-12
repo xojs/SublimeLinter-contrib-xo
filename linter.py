@@ -30,6 +30,10 @@ class XO(NodeLinter):
         'javascript (jsx)',
         'jsx-real'
     )
+    defaults = {
+        'enable_if_dependency': True,
+        'disable_if_not_dependency': True
+    }
     version_args = '--version'
     version_re = r'(?P<version>\d+\.\d+\.\d+)'
     version_requirement = '>=0.5.0'
