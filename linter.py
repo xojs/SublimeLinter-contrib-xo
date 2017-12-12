@@ -30,9 +30,6 @@ class XO(NodeLinter):
         'javascript (jsx)',
         'jsx-real',
         'Vue Component',
-        'vue-component',
-        'vue-syntax-highlight',
-        'Vue Syntax Highlight',
         'vue'
     )
     defaults = {
