@@ -28,7 +28,9 @@ class XO(NodeLinter):
         'javascriptnext',
         'javascript (babel)',
         'javascript (jsx)',
-        'jsx-real'
+        'jsx-real',
+        'Vue Component',
+        'vue'
     )
     defaults = {
         'enable_if_dependency': True,
