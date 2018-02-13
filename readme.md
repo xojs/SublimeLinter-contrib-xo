@@ -2,7 +2,7 @@
 
 ![](screenshot.png)
 
-This linter plugin for [SublimeLinter][docs] provides an interface to [XO](https://github.com/sindresorhus/xo). It will be used with files that have the "javascript" syntax.
+This linter plugin for [SublimeLinter][docs] provides an interface to [XO](https://github.com/xojs/xo). It will be used with files that have the "javascript" syntax.
 
 
 ## Install
@@ -46,7 +46,7 @@ To install via Package Control, do the following:
 
 For general information on how SublimeLinter works with settings, please see [Settings][settings]. For information on generic linter settings, please see [Linter Settings][linter-settings].
 
-XO [config](https://github.com/sindresorhus/xo#config) should be defined in package.json.
+XO [config](https://github.com/xojs/xo#config) should be defined in package.json.
 
 
 ## Note
