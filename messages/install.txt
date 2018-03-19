@@ -1,5 +1,6 @@
 SublimeLinter-contrib-xo
--------------------------------
+------------------------
+
 This linter plugin for SublimeLinter provides an interface to XO.
 
 For more information, please see:
