@@ -26,6 +26,23 @@ In order for `xo` to be executed by SublimeLinter, you must ensure that its path
 - [Linter settings](https://sublimelinter.readthedocs.org/en/latest/linter_settings.html)
 
 
+## Tips
+
+### Using non-JS syntax
+
+If you're using an ESLint plugin with XO that provides non-JS syntax, like TypeScript, Vue, etc, you need to change the SublimeLinter [`selector` setting](http://www.sublimelinter.com/en/stable/linter_settings.html#selector) to include the syntax scope. For Vue, that would be:
+
+```json
+{
+	"linters": {
+		"xo": {
+			"selector": "text.html.vue, source.js - meta.attribute-with-value"
+		}
+	}
+}
+```
+
+
 ## Note
 
 XO linting is only enabled for projects with `xo` in `devDependencies`/`dependencies` in package.json.
