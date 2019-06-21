@@ -1,0 +1,3 @@
+[
+  { "caption": "SublimeLinter XO: AutoFix Current File", "command": "xo_fix_file" },
+]

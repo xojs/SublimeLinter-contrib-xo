@@ -1,0 +1,50 @@
+[
+  {
+    "id": "tools",
+    "children": [
+      {
+        "id": "SublimeLinter-contrib-xo",
+        "caption": "SublimeLinter XO",
+        "children": [
+          {
+            "caption": "AutoFix Current File",
+            "command": "xo_fix_file"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "preferences",
+    "children": [
+      {
+        "id": "package-settings",
+        "children": [
+          {
+            "caption": "SublimeLinter XO",
+            "id": "SublimeLinter-contrib-xo",
+            "children": [
+              
+               {
+                  "caption": "Settings",
+                  "command": "edit_settings", "args":
+                  {
+                      "base_file": "${packages}/SublimeLinter-contrib-xo/SublimeLinterContribXO.sublime-settings",
+                      "default": "// SublimeLinterContribXO Settings - User\n{\n\t$0\n}\n"
+                  }
+              },
+              {
+                  "caption": "Key Bindings",
+                  "command": "edit_settings", "args":
+                  {
+                      "base_file": "${packages}/SublimeLinter-contrib-xo/keymaps/Default ($platform).sublime-keymap",
+                      "default": "${packages}/User/Default ($platform).sublime-keymap"
+                  }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
