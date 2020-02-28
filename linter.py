@@ -8,10 +8,12 @@ from SublimeLinter.lint.base_linter.node_linter import read_json_file
 
 STANDARD_SELECTOR = 'source.js'
 PLUGINS = {
+	'eslint-plugin-html': 'text.html',
+	'eslint-plugin-json': 'source.json',
+	'eslint-plugin-markdown': 'text.html.markdown',
 	'eslint-plugin-svelte3': 'text.html',
 	'eslint-plugin-vue': 'text.html.vue',
-	'eslint-plugin-json': 'source.json',
-	'eslint-plugin-html': 'text.html'
+	'@typescript-eslint/parser': 'source.ts',
 }
 OPTIMISTIC_SELECTOR = ', '.join({STANDARD_SELECTOR} | set(PLUGINS.values()))
 
