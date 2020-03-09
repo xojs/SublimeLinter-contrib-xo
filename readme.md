@@ -4,7 +4,6 @@
 
 This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) provides an interface to [XO](https://github.com/xojs/xo). It will be used with files that have the “JavaScript” syntax.
 
-
 ## Installation
 
 SublimeLinter must be installed in order to use this plugin.
@@ -19,12 +18,10 @@ $ npm install --global xo
 
 In order for `xo` to be executed by SublimeLinter, you must ensure that its path is available to SublimeLinter. The docs cover [troubleshooting PATH configuration](https://sublimelinter.readthedocs.io/en/latest/troubleshooting.html#finding-a-linter-executable).
 
-
 ## Settings
 
 - [SublimeLinter settings](https://sublimelinter.readthedocs.org/en/latest/settings.html)
 - [Linter settings](https://sublimelinter.readthedocs.org/en/latest/linter_settings.html)
-
 
 ## Tips
 
@@ -46,7 +43,7 @@ For plugins not supported out-of-the-box, you may need to change the SublimeLint
 
 ### Help, `xo` doesn't lint my HTML files anymore!
 
-`xo` will only lint `*.js` files for standard, vanilla config without further plugins. Either install the [eslint-plugin-html](https://github.com/BenoitZugmeyer/eslint-plugin-html) or tweak the `selector`: 
+`xo` will only lint `*.js` files for standard, vanilla config without further plugins. Either install the [eslint-plugin-html](https://github.com/BenoitZugmeyer/eslint-plugin-html) or tweak the `selector`:
 
 ```json
 {
@@ -58,12 +55,6 @@ For plugins not supported out-of-the-box, you may need to change the SublimeLint
 }
 ```
 
-
 ## Note
 
 XO linting is only enabled for projects with `xo` in `devDependencies`/`dependencies` in package.json.
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)
