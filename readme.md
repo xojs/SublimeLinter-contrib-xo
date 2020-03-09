@@ -30,7 +30,7 @@ In order for `xo` to be executed by SublimeLinter, you must ensure that its path
 
 ### Using non-JS syntax
 
-Typical plugins for Eslint, e.g. for TypeScript or Vue, should just work automatically if they're installed locally to your project. (Technically speaking: if they're defined in the same `package.json`.)
+Typical plugins for ESLint, for example, for TypeScript or Vue, should just work automatically if they're installed locally in your project (defined in the same `package.json`).
 
 For plugins not supported out-of-the-box, you may need to change the SublimeLinter [`selector` setting](http://www.sublimelinter.com/en/stable/linter_settings.html#selector) to include the correct syntax scope. For Vue, that could be:
 
@@ -46,7 +46,7 @@ For plugins not supported out-of-the-box, you may need to change the SublimeLint
 
 ### Help, `xo` doesn't lint my HTML files anymore!
 
-`xo` will only lint '*.js' files for standard, vanilla configurations without further plugins. Either install the "eslint-plugin-html" or tweak the `selector`: 
+`xo` will only lint `*.js` files for standard, vanilla config without further plugins. Either install the [eslint-plugin-html](https://github.com/BenoitZugmeyer/eslint-plugin-html) or tweak the `selector`: 
 
 ```json
 {
