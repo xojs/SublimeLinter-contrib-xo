@@ -1,0 +1,4 @@
+{
+	"cmd": ["xo", "--stdin", "--fix"],
+	"fix_on_save": false
+}

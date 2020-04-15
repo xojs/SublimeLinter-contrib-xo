@@ -1,10 +1,19 @@
 import os
+import sublime
+import sublime_plugin
+import platform
+import subprocess
 from SublimeLinter.lint import NodeLinter
 
 # TODO: Properly export these in SL core: https://github.com/SublimeLinter/SublimeLinter/issues/1713
 from SublimeLinter.lint.linter import PermanentError
 from SublimeLinter.lint.base_linter.node_linter import read_json_file
 
+is_windows = platform.system() == 'Windows'
+startup_info = None
+if is_windows:
+	startup_info = subprocess.STARTUPINFO()
+	startup_info.dwFlags |= subprocess.STARTF_USESHOWWINDOW
 
 STANDARD_SELECTOR = 'source.js'
 PLUGINS = {
@@ -17,6 +26,11 @@ PLUGINS = {
 }
 OPTIMISTIC_SELECTOR = ', '.join({STANDARD_SELECTOR} | set(PLUGINS.values()))
 
+settings = None
+
+def plugin_loaded():
+	global settings
+	settings = sublime.load_settings('SublimeLinterContribXO.sublime-settings')
 
 class XO(NodeLinter):
 	npm_name = 'xo'
@@ -33,12 +47,13 @@ class XO(NodeLinter):
 	}
 
 	def run(self, cmd, code):
-		self.ensure_plugin_installed()
+		XO.ensure_plugin_installed(self, True)
 		return super().run(cmd, code)
 
-	def ensure_plugin_installed(self) -> bool:
+	@staticmethod
+	def ensure_plugin_installed(self, isLinter) -> bool:
 		# If the user changed the selector, we take it as is.
-		if self.settings['selector'] != OPTIMISTIC_SELECTOR:
+		if isLinter and self.settings['selector'] != OPTIMISTIC_SELECTOR:
 			return True
 
 		# Happy path.
@@ -73,3 +88,53 @@ class XO(NodeLinter):
 		# the environment. Silently, do not notify and disturb the user!
 		self.notify_unassign()
 		raise PermanentError()
+
+def guess_cwd(view):
+	if view.file_name():
+		return os.path.dirname(view.file_name())
+	elif len(view.window().folders()):
+		return view.window().folders()[0]
+
+def run_cmd(cmd, data, view):
+	cwd = guess_cwd(view)
+	if isinstance(data, str):
+		data = data.encode()
+
+	proc = subprocess.Popen(
+		cmd,
+		stdin=subprocess.PIPE,
+		stderr=subprocess.PIPE,
+		stdout=subprocess.PIPE,
+		cwd=cwd,
+		startupinfo=startup_info,
+	)
+	stdout, stderr = proc.communicate(data)
+
+	return stdout
+
+def xo_fix(view, content):
+	encoding = view.encoding()
+	if encoding == 'Undefined':
+		encoding = 'utf-8'
+
+	cmd = settings.get('cmd', ['xo', '--stdin', '--fix'])
+	code = run_cmd(cmd, content, view)
+	return code.decode(encoding)
+
+class XofixCommand(sublime_plugin.TextCommand):
+	def is_enabled(self):
+		return XO.ensure_plugin_installed(self, False)
+
+	def run(self, edit):
+		region = sublime.Region(0, self.view.size())
+		content = self.view.substr(region)
+
+		replacement = xo_fix(self.view, content)
+		if content != replacement:
+			self.view.replace(edit, region, replacement)
+
+class XofixListener(sublime_plugin.EventListener):
+	def on_pre_save(self, view):
+		if not settings.get('fix_on_save', False):
+			return
+		view.run_command('xofix')

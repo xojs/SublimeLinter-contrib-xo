@@ -23,6 +23,22 @@ In order for `xo` to be executed by SublimeLinter, you must ensure that its path
 - [SublimeLinter settings](https://sublimelinter.readthedocs.org/en/latest/settings.html)
 - [Linter settings](https://sublimelinter.readthedocs.org/en/latest/linter_settings.html)
 
+Also you can change general plugin setting from:
+
+ `Preferences > Package Settings > SublimeLinter XO`
+
+## Autofix
+
+To fix manually you can use the menu entry `Tools > SublimeLinter XO > Fix current file`
+
+If you want to run this command when saving a file, you can enable the `fix_on_save` option on settings:
+
+```json
+{
+  "fix_on_save": true
+}
+```
+
 ## Tips
 
 ### Using non-JS syntax
