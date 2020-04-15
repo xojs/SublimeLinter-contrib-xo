@@ -8,6 +8,7 @@ from SublimeLinter.lint import NodeLinter
 from SublimeLinter.lint.linter import PermanentError
 from SublimeLinter.lint.base_linter.node_linter import read_json_file
 
+
 STANDARD_SELECTOR = 'source.js'
 PLUGINS = {
 	'eslint-plugin-html': 'text.html',
