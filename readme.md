@@ -29,7 +29,7 @@ Also you can change general plugin setting from:
 
 ## Autofix
 
-To fix manually you can use the menu entry `Tools > SublimeLinter XO > Fix current file`
+To fix manually you can use the `ctrl+alt+f` shortcut or use the menu entry `Tools > SublimeLinter XO > Fix current file`
 
 If you want to run this command when saving a file, you can enable the `fix_on_save` option on settings:
 
