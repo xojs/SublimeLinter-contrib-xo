@@ -1,19 +1,12 @@
 import os
 import sublime
 import sublime_plugin
-import platform
 import subprocess
 from SublimeLinter.lint import NodeLinter
 
 # TODO: Properly export these in SL core: https://github.com/SublimeLinter/SublimeLinter/issues/1713
 from SublimeLinter.lint.linter import PermanentError
 from SublimeLinter.lint.base_linter.node_linter import read_json_file
-
-is_windows = platform.system() == 'Windows'
-startup_info = None
-if is_windows:
-	startup_info = subprocess.STARTUPINFO()
-	startup_info.dwFlags |= subprocess.STARTF_USESHOWWINDOW
 
 STANDARD_SELECTOR = 'source.js'
 PLUGINS = {
@@ -106,7 +99,6 @@ def run_cmd(cmd, data, view):
 		stderr=subprocess.PIPE,
 		stdout=subprocess.PIPE,
 		cwd=cwd,
-		startupinfo=startup_info,
 	)
 	stdout, stderr = proc.communicate(data)
 
