@@ -35,7 +35,7 @@ If you want to run this command when saving a file, you can enable the `fix_on_s
 
 ```json
 {
-  "fix_on_save": true
+	"fix_on_save": true
 }
 ```
 
