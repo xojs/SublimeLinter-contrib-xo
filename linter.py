@@ -114,7 +114,7 @@ def xo_fix(view, content):
 	code = run_cmd(cmd, content, view)
 	return code.decode(encoding)
 
-class XofixCommand(sublime_plugin.TextCommand):
+class XoFixCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
 		return XO.ensure_plugin_installed(self, False)
 
@@ -126,8 +126,8 @@ class XofixCommand(sublime_plugin.TextCommand):
 		if content != replacement:
 			self.view.replace(edit, region, replacement)
 
-class XofixListener(sublime_plugin.EventListener):
+class XoFixListener(sublime_plugin.EventListener):
 	def on_pre_save(self, view):
 		if not settings.get('fix_on_save', False):
 			return
-		view.run_command('xofix')
+		view.run_command('xo_fix')

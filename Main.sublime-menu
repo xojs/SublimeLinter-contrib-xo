@@ -9,7 +9,7 @@
 				"children": [
 					{
 						"caption": "Fix current file",
-						"command": "xofix"
+						"command": "xo_fix"
 					}
 				]
 			}

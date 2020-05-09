@@ -1,6 +1,6 @@
 [
 	{
 		"caption": "SublimeLinter XO: Fix current file",
-		"command": "xofix"
+		"command": "xo_fix"
 	}
 ]
