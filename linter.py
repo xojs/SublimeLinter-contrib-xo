@@ -97,11 +97,10 @@ def run_cmd(cmd, data, view):
 	proc = subprocess.Popen(
 		cmd,
 		stdin=subprocess.PIPE,
-		stderr=subprocess.PIPE,
 		stdout=subprocess.PIPE,
 		cwd=cwd,
 	)
-	stdout, stderr = proc.communicate(data)
+	stdout, _ = proc.communicate(data)
 
 	return stdout
 
