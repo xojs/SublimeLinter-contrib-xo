@@ -110,7 +110,7 @@ def xo_fix(view, content):
 	if encoding == 'Undefined':
 		encoding = 'utf-8'
 
-	cmd = settings.get('cmd', ['xo', '--stdin', '--fix'])
+	cmd = ['xo', '--stdin', '--fix']
 	code = run_cmd(cmd, content, view)
 	return code.decode(encoding)
 
