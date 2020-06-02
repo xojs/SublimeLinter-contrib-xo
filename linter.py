@@ -94,6 +94,7 @@ def run_cmd(cmd, data, view):
 	if isinstance(data, str):
 		data = data.encode()
 
+	# TODO: change to use .run() when Sublime update Python to 3.5 
 	proc = subprocess.Popen(
 		cmd,
 		stdin=subprocess.PIPE,
