@@ -108,6 +108,7 @@ def xo_fix(self, view, content):
 		[self.xo_path, '--stdin', '--fix'],
 		stdin=subprocess.PIPE,
 		stdout=subprocess.PIPE,
+		env=self.xo_env,
 		cwd=self.xo_start_dir,
 		startupinfo=startup_info,
 	)
@@ -118,13 +119,19 @@ def xo_fix(self, view, content):
 class XoFixCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
 		linter = make_fake_linter(self.view)
-		self.xo_start_dir = linter.get_start_dir()
-		self.xo_path = linter.find_local_executable(self.xo_start_dir, 'xo')
 
+		self.xo_start_dir = linter.get_start_dir()
+		if not self.xo_start_dir:
+			return False
+
+		self.xo_path = linter.find_local_executable(self.xo_start_dir, 'xo')
 		if not self.xo_path:
 			return False
 
-		return XO.ensure_plugin_installed(self, False)
+		self.xo_env = os.environ.copy()
+		self.xo_env['PWD'] = self.xo_start_dir
+
+		return True
 
 	def run(self, edit):
 		region = sublime.Region(0, self.view.size())
