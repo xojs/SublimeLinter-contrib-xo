@@ -29,7 +29,16 @@ Also you can change general plugin setting from:
 
 ## Auto-fix
 
-To run the auto-fixer, press the `ctrl+alt+f` shortcut (can be changed) or use the menu entry “Tools › SublimeLinter XO › Fix current file”.
+To run the auto-fixer, press the `ctrl+alt+f` shortcut or use the menu entry “Tools › SublimeLinter XO › Fix current file”.
+
+The shortcut can be changed in `Preferences > Key Bindings` then add into the array:
+
+```json
+{
+	"keys": ["ctrl+alt+f"],
+	"command": "xo_fix"
+}
+```
 
 If you want to run the auto-fixer when saving a file, you can enable the `fix_on_save` setting:
 
