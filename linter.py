@@ -2,7 +2,10 @@ import os
 import sublime
 import sublime_plugin
 import subprocess
-from SublimeLinter.lint import NodeLinter
+from SublimeLinter.lint import (
+	NodeLinter,
+	linter as linter_module
+)
 
 # TODO: Properly export these in SL core: https://github.com/SublimeLinter/SublimeLinter/issues/1713
 from SublimeLinter.lint.linter import PermanentError
@@ -83,46 +86,45 @@ class XO(NodeLinter):
 		self.notify_unassign()
 		raise PermanentError()
 
-def guess_cwd(view):
-	if view.file_name():
-		return os.path.dirname(view.file_name())
-	elif len(view.window().folders()):
-		return view.window().folders()[0]
+def make_fake_linter(view):
+	settings = linter_module.get_linter_settings(XO, view)
+	return XO(view, settings)
 
-def run_cmd(cmd, data, view):
-	cwd = guess_cwd(view)
-	if isinstance(data, str):
-		data = data.encode()
+def xo_fix(self, view, content):
+	if isinstance(content, str):
+		content = content.encode()
 
-	# TODO: Change to use `subprocess.run()` when Sublime updates Python to 3.5 or later. 
-	proc = subprocess.Popen(
-		cmd,
-		stdin=subprocess.PIPE,
-		stdout=subprocess.PIPE,
-		cwd=cwd,
-	)
-	stdout, _ = proc.communicate(data)
-
-	return stdout
-
-def xo_fix(view, content):
 	encoding = view.encoding()
 	if encoding == 'Undefined':
 		encoding = 'utf-8'
 
-	cmd = ['xo', '--stdin', '--fix']
-	code = run_cmd(cmd, content, view)
-	return code.decode(encoding)
+	# TODO: Change to use `subprocess.run()` when Sublime updates Python to 3.5 or later. 
+	proc = subprocess.Popen(
+		[self.xo_path, '--stdin', '--fix'],
+		stdin=subprocess.PIPE,
+		stdout=subprocess.PIPE,
+		cwd=self.xo_start_dir,
+	)
+	stdout, _ = proc.communicate(content)
+
+	return stdout.decode(encoding)
 
 class XoFixCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
+		linter = make_fake_linter(self.view)
+		self.xo_start_dir = linter.get_start_dir()
+		self.xo_path = linter.find_local_executable(self.xo_start_dir, 'xo')
+
+		if not self.xo_path:
+			return False
+
 		return XO.ensure_plugin_installed(self, False)
 
 	def run(self, edit):
 		region = sublime.Region(0, self.view.size())
 		content = self.view.substr(region)
 
-		replacement = xo_fix(self.view, content)
+		replacement = xo_fix(self, self.view, content)
 		if content != replacement:
 			self.view.replace(edit, region, replacement)
 
