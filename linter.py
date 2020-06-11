@@ -50,13 +50,12 @@ class XO(NodeLinter):
 	}
 
 	def run(self, cmd, code):
-		XO.ensure_plugin_installed(self, True)
+		self.ensure_plugin_installed()
 		return super().run(cmd, code)
 
-	@staticmethod
-	def ensure_plugin_installed(self, isLinter) -> bool:
+	def ensure_plugin_installed(self) -> bool:
 		# If the user changed the selector, we take it as is.
-		if isLinter and self.settings['selector'] != OPTIMISTIC_SELECTOR:
+		if self.settings['selector'] != OPTIMISTIC_SELECTOR:
 			return True
 
 		# Happy path.
