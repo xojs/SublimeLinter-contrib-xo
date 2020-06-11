@@ -1,4 +1,5 @@
 import os
+import platform
 import sublime
 import sublime_plugin
 import subprocess
@@ -22,6 +23,11 @@ PLUGINS = {
 	'@typescript-eslint/parser': 'source.ts',
 }
 OPTIMISTIC_SELECTOR = ', '.join({STANDARD_SELECTOR} | set(PLUGINS.values()))
+
+startup_info = None
+if platform.system() == 'Windows':
+	startup_info = subprocess.STARTUPINFO()
+	startup_info.dwFlags |= subprocess.STARTF_USESHOWWINDOW
 
 settings = None
 
@@ -104,6 +110,7 @@ def xo_fix(self, view, content):
 		stdin=subprocess.PIPE,
 		stdout=subprocess.PIPE,
 		cwd=self.xo_start_dir,
+		startupinfo=startup_info,
 	)
 	stdout, _ = proc.communicate(content)
 
