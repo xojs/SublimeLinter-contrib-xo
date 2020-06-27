@@ -145,7 +145,7 @@ class XoFixCommand(sublime_plugin.TextCommand):
 		self.xo_env = os.environ.copy()
 		self.xo_env['PWD'] = self.xo_project_root
 
-		print('XoFixCommand -> project_root ->', linter.context.get('project_root'))
+		print('XoFixCommand -> project_root ->', self.xo_project_root)
 		print('XoFixCommand -> return -> True')
 		return True
 
