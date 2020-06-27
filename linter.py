@@ -123,6 +123,7 @@ def xo_fix(self, view, content):
 	print('xo_fix -> stdout len:', len(stdout))
 	print('xo_fix -> stderr len:', len(stderr))
 	print('xo_fix -> stderr content:', stderr.decode(encoding))
+	print('xo_fix -> returncode:', proc.returncode)
 
 	return stdout.decode(encoding)
 
