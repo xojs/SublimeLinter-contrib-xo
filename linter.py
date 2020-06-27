@@ -103,6 +103,12 @@ def xo_fix(self, view, content):
 	if encoding == 'Undefined':
 		encoding = 'utf-8'
 
+	print('xo_fix -> content length:', len(content))
+	print('xo_fix -> encoding:', encoding)
+	print('xo_fix -> xo_start_dir:', self.xo_start_dir) # Print again just to be sure
+	print('xo_fix -> xo_env.PWD:', self.xo_env['PWD'])
+	print('xo_fix -> xo_project_root:', self.xo_project_root)
+
 	# TODO: Change to use `subprocess.run()` when Sublime updates Python to 3.5 or later. 
 	proc = subprocess.Popen(
 		[self.xo_path, '--stdin', '--fix'],
@@ -113,25 +119,34 @@ def xo_fix(self, view, content):
 		startupinfo=startup_info,
 	)
 	stdout, _ = proc.communicate(content)
+	print('xo_fix -> stdout:', len(stdout))
 
 	return stdout.decode(encoding)
 
 class XoFixCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
+		print('XoFixCommand -> is_enabled?')
 		linter = make_fake_linter(self.view)
+		print('XoFixCommand -> project_root ->', linter.context.get('project_root'))
 
 		self.xo_start_dir = linter.get_start_dir()
+		print('XoFixCommand -> xo_start_dir', self.xo_start_dir)
 		if not self.xo_start_dir:
+			print('XoFixCommand -> xo_start_dir -> False')
 			return False
 
 		self.xo_path = linter.find_local_executable(self.xo_start_dir, 'xo')
+		print('XoFixCommand -> xo_path', self.xo_path)
 		if not self.xo_path:
+			print('XoFixCommand -> xo_path -> False')
 			return False
 
 		self.xo_project_root = linter.context.get('project_root')
 		self.xo_env = os.environ.copy()
 		self.xo_env['PWD'] = self.xo_project_root
 
+		print('XoFixCommand -> project_root ->', linter.context.get('project_root'))
+		print('XoFixCommand -> return -> True')
 		return True
 
 	def run(self, edit):
