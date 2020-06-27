@@ -113,13 +113,16 @@ def xo_fix(self, view, content):
 	proc = subprocess.Popen(
 		[self.xo_path, '--stdin', '--fix'],
 		stdin=subprocess.PIPE,
+		stderr=subprocess.PIPE,
 		stdout=subprocess.PIPE,
 		env=self.xo_env,
 		cwd=self.xo_project_root,
 		startupinfo=startup_info,
 	)
-	stdout, _ = proc.communicate(content)
-	print('xo_fix -> stdout:', len(stdout))
+	stdout, stderr = proc.communicate(content)
+	print('xo_fix -> stdout len:', len(stdout))
+	print('xo_fix -> stderr len:', len(stderr))
+	print('xo_fix -> stderr content:', stderr.decode(encoding))
 
 	return stdout.decode(encoding)
 
