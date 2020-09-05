@@ -106,7 +106,6 @@ def xo_fix(self, view, content):
 
 	print('xo_fix -> content length:', len(content))
 	print('xo_fix -> encoding:', encoding)
-	print('xo_fix -> xo_start_dir:', self.xo_start_dir) # Print again just to be sure
 	print('xo_fix -> xo_env.PWD:', self.xo_env['PWD'])
 	print('xo_fix -> xo_project_root:', self.xo_project_root)
 
