@@ -125,6 +125,10 @@ def xo_fix(self, view, content):
 	print('xo_fix -> stderr content:', stderr.decode(encoding))
 	print('xo_fix -> returncode:', proc.returncode)
 
+	if stderr != b'':
+		sublime.message_dialog("[xo_fix " + str(proc.returncode) + "] " + stderr.decode(encoding))
+		return None
+
 	return stdout.decode(encoding)
 
 class XoFixCommand(sublime_plugin.TextCommand):
@@ -158,7 +162,7 @@ class XoFixCommand(sublime_plugin.TextCommand):
 		content = self.view.substr(region)
 
 		replacement = xo_fix(self, self.view, content)
-		if content != replacement:
+		if replacement != None and content != replacement:
 			self.view.replace(edit, region, replacement)
 
 class XoFixListener(sublime_plugin.EventListener):
