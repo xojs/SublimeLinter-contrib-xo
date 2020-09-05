@@ -7,6 +7,7 @@ from SublimeLinter.lint import (
 	NodeLinter,
 	linter as linter_module
 )
+import shellenv
 
 # TODO: Properly export these in SL core: https://github.com/SublimeLinter/SublimeLinter/issues/1713
 from SublimeLinter.lint.linter import PermanentError
@@ -150,9 +151,10 @@ class XoFixCommand(sublime_plugin.TextCommand):
 			return False
 
 		self.xo_project_root = linter.context.get('project_root')
-		self.xo_env = os.environ.copy()
+		_, self.xo_env = shellenv.get_env(for_subprocess=True)
 		self.xo_env['PWD'] = self.xo_project_root
 
+		print('XoFixCommand -> shellenv -> shellenv.path ->', self.xo_env['PATH'])
 		print('XoFixCommand -> project_root ->', self.xo_project_root)
 		print('XoFixCommand -> return -> True')
 		return True
