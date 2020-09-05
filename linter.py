@@ -154,7 +154,9 @@ class XoFixCommand(sublime_plugin.TextCommand):
 		_, self.xo_env = shellenv.get_env(for_subprocess=True)
 		self.xo_env['PWD'] = self.xo_project_root
 
+		xo_env2 = os.environ.copy()
 		print('XoFixCommand -> shellenv -> shellenv.path ->', self.xo_env['PATH'])
+		print('XoFixCommand -> environ  -> environ.path ->', xo_env2['PATH'])
 		print('XoFixCommand -> project_root ->', self.xo_project_root)
 		print('XoFixCommand -> return -> True')
 		return True
