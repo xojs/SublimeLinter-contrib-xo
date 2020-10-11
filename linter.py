@@ -151,7 +151,7 @@ class XoFixCommand(sublime_plugin.TextCommand):
 		self.xo_project_root = linter.context.get('project_root')
 		self.xo_env = os.environ.copy()
 		self.xo_env['PWD'] = self.xo_project_root
-		self.xo_env['PATH'] += os.pathsep + '/usr/local/bin' # Ensure correct PATH for Node.js in Mac
+		self.xo_env['PATH'] += os.pathsep + '/usr/local/bin' # Ensure correct PATH for Node.js on macOS
 
 		print('XoFixCommand -> environ.path ->', self.xo_env['PATH'])
 		print('XoFixCommand -> project_root ->', self.xo_project_root)
