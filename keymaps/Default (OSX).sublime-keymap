@@ -1,0 +1,8 @@
+[
+	{
+		"command": "xo_fix",
+		"keys": [
+			"ctrl+alt+f"
+		]
+	}
+]

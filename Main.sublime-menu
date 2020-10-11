@@ -1,0 +1,98 @@
+[
+	{
+		"caption": "Tools",
+		"id": "tools",
+		"children": [
+			{
+				"id": "SublimeLinter-contrib-xo",
+				"caption": "SublimeLinter XO",
+				"children": [
+					{
+						"caption": "Fix current file",
+						"command": "xo_fix"
+					}
+				]
+			}
+		]
+	},
+	{
+		"caption": "Preferences",
+		"id": "preferences",
+		"children": [
+			{
+				"caption": "Package Settings",
+				"id": "package-settings",
+				"children": [
+					{
+						"caption": "SublimeLinter XO",
+						"children": [
+							{
+								"caption": "Settings - Default",
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/SublimeLinter-contrib-xo/SublimeLinterContribXO.sublime-settings"
+								}
+							},
+							{
+								"caption": "Settings - User",
+								"command": "open_file",
+								"args": {
+									"file": "${packages}/User/SublimeLinterContribXO.sublime-settings"
+								}
+							},
+							{ "caption": "-" },
+							{
+								"command": "open_file", "args":
+								{
+									"file": "${packages}/SublimeLinter-contrib-xo/keymaps/Default (Linux).sublime-keymap",
+									"platform": "Linux"
+								},
+								"caption": "Key Bindings - Default"
+							},
+							{
+								"command": "open_file", "args":
+								{
+									"file": "${packages}/User/Default (Linux).sublime-keymap",
+									"platform": "Linux"
+								},
+								"caption": "Key Bindings - User"
+							},
+							{
+								"command": "open_file", "args":
+								{
+									"file": "${packages}/SublimeLinter-contrib-xo/keymaps/Default (OSX).sublime-keymap",
+									"platform": "OSX"
+								},
+								"caption": "Key Bindings - Default"
+							},
+							{
+								"command": "open_file", "args":
+								{
+									"file": "${packages}/User/Default (OSX).sublime-keymap",
+									"platform": "OSX"
+								},
+								"caption": "Key Bindings - User"
+							},
+							{
+								"command": "open_file", "args":
+								{
+									"file": "${packages}/SublimeLinter-contrib-xo/keymaps/Default (Windows).sublime-keymap",
+									"platform": "Windows"
+								},
+								"caption": "Key Bindings - Default"
+							},
+							{
+								"command": "open_file", "args":
+								{
+									"file": "${packages}/User/Default (Windows).sublime-keymap",
+									"platform": "Windows"
+								},
+								"caption": "Key Bindings - User"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]
