@@ -105,7 +105,7 @@ def xo_fix(self, view, content):
 	if encoding == 'Undefined':
 		encoding = 'utf-8'
 
-	logger.info('xo_fix -> content length: %d', len(content))
+	logger.info('xo_fix → content length: %d', len(content))
 	logger.info('xo_fix -> encoding: %s', encoding)
 	logger.info('xo_fix -> xo_env.PWD: %s', self.xo_env['PWD'])
 	logger.info('xo_fix -> xo_project_root: %s', self.xo_project_root)
