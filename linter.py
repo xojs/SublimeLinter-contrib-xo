@@ -13,7 +13,7 @@ from SublimeLinter.lint import (
 from SublimeLinter.lint.linter import PermanentError
 from SublimeLinter.lint.base_linter.node_linter import read_json_file
 
-logger = logging.getLogger("SublimeLinter.plugin.xo")
+logger = logging.getLogger('SublimeLinter.plugin.xo')
 
 STANDARD_SELECTOR = 'source.js'
 PLUGINS = {
