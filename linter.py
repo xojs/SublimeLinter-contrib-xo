@@ -106,9 +106,9 @@ def xo_fix(self, view, content):
 		encoding = 'utf-8'
 
 	logger.info('xo_fix → content length: %d', len(content))
-	logger.info('xo_fix -> encoding: %s', encoding)
-	logger.info('xo_fix -> xo_env.PWD: %s', self.xo_env['PWD'])
-	logger.info('xo_fix -> xo_project_root: %s', self.xo_project_root)
+	logger.info('xo_fix → encoding: %s', encoding)
+	logger.info('xo_fix → xo_env.PWD: %s', self.xo_env['PWD'])
+	logger.info('xo_fix → xo_project_root: %s', self.xo_project_root)
 
 	# TODO: Change to use `subprocess.run()` when Sublime updates Python to 3.5 or later. 
 	proc = subprocess.Popen(
@@ -121,10 +121,10 @@ def xo_fix(self, view, content):
 		startupinfo=startup_info,
 	)
 	stdout, stderr = proc.communicate(content)
-	logger.info('xo_fix -> stdout len: %d', len(stdout))
-	logger.info('xo_fix -> stderr len: %d', len(stderr))
-	logger.info('xo_fix -> stderr content: %s', stderr.decode(encoding))
-	logger.info('xo_fix -> returncode: %d', proc.returncode)
+	logger.info('xo_fix → stdout len: %d', len(stdout))
+	logger.info('xo_fix → stderr len: %d', len(stderr))
+	logger.info('xo_fix → stderr content: %s', stderr.decode(encoding))
+	logger.info('xo_fix → returncode: %d', proc.returncode)
 
 	if proc.returncode != 0:
 		sublime.message_dialog('[xo_fix ' + str(proc.returncode) + '] ' + stderr.decode(encoding))
@@ -134,20 +134,20 @@ def xo_fix(self, view, content):
 
 class XoFixCommand(sublime_plugin.TextCommand):
 	def is_enabled(self):
-		logger.info('XoFixCommand -> is_enabled?')
+		logger.info('XoFixCommand → is_enabled?')
 		linter = make_fake_linter(self.view)
-		logger.info('XoFixCommand -> project_root -> %s', linter.context.get('project_root'))
+		logger.info('XoFixCommand → project_root → %s', linter.context.get('project_root'))
 
 		self.xo_start_dir = linter.get_start_dir()
-		logger.info('XoFixCommand -> xo_start_dir %s', self.xo_start_dir)
+		logger.info('XoFixCommand → xo_start_dir %s', self.xo_start_dir)
 		if not self.xo_start_dir:
-			logger.info('XoFixCommand -> xo_start_dir -> False')
+			logger.info('XoFixCommand → xo_start_dir → False')
 			return False
 
 		self.xo_path = linter.find_local_executable(self.xo_start_dir, 'xo')
-		logger.info('XoFixCommand -> xo_path %s', self.xo_path)
+		logger.info('XoFixCommand → xo_path %s', self.xo_path)
 		if not self.xo_path:
-			logger.info('XoFixCommand -> xo_path -> False')
+			logger.info('XoFixCommand → xo_path → False')
 			return False
 
 		self.xo_project_root = linter.context.get('project_root')
@@ -155,9 +155,9 @@ class XoFixCommand(sublime_plugin.TextCommand):
 		self.xo_env['PWD'] = self.xo_project_root
 		self.xo_env['PATH'] += os.pathsep + '/usr/local/bin' # Ensure correct PATH for Node.js on macOS
 
-		logger.info('XoFixCommand -> environ.path -> %s', self.xo_env['PATH'])
-		logger.info('XoFixCommand -> project_root -> %s', self.xo_project_root)
-		logger.info('XoFixCommand -> return -> True')
+		logger.info('XoFixCommand → environ.path → %s', self.xo_env['PATH'])
+		logger.info('XoFixCommand → project_root → %s', self.xo_project_root)
+		logger.info('XoFixCommand → return → True')
 		return True
 
 	def run(self, edit):
