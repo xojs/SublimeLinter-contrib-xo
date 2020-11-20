@@ -127,7 +127,7 @@ def xo_fix(self, view, content):
 	logger.info('xo_fix -> returncode: %d', proc.returncode)
 
 	if proc.returncode != 0:
-		sublime.message_dialog("[xo_fix " + str(proc.returncode) + "] " + stderr.decode(encoding))
+		sublime.message_dialog('[xo_fix ' + str(proc.returncode) + '] ' + stderr.decode(encoding))
 		return None
 
 	return stdout.decode(encoding)
