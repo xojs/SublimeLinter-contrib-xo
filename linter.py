@@ -38,7 +38,6 @@ def plugin_loaded():
 	settings = sublime.load_settings('SublimeLinterContribXO.sublime-settings')
 
 class XO(NodeLinter):
-	npm_name = 'xo'
 	cmd = ('xo', '--stdin', '--reporter', 'compact', '--filename', '${file}')
 	regex = (
 		r'^.+?: line (?P<line>\d+), col (?P<col>\d+), '
