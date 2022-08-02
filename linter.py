@@ -6,11 +6,10 @@ import subprocess
 import logging
 from SublimeLinter.lint import (
 	NodeLinter,
+	PermanentError,
 	linter as linter_module
 )
 
-# TODO: Properly export these in SL core: https://github.com/SublimeLinter/SublimeLinter/issues/1713
-from SublimeLinter.lint.linter import PermanentError
 from SublimeLinter.lint.base_linter.node_linter import read_json_file
 
 logger = logging.getLogger('SublimeLinter.plugin.xo')
